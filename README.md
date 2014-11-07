@@ -12,7 +12,7 @@ require_once(MCR_ROOT."instruments/modules/qexy/api/api.class.php");
 
 // Set default url for module
 
-$api->url = "?mode=api_test";
+$api->url = "?mode=YOUR_MODULE";
  
  
 // Set default style path for module
