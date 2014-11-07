@@ -1,0 +1,24 @@
+<div class="api-bb-panel">
+	<div class="btn-toolbar">
+		<div class="btn-group">
+			<a href="#" rel="tooltip" class="btn" title="Жирный" onClick="javascript:bb(<?php echo $panel_id; ?>, '[b]', '[/b]'); return false;"><b>B</b></a>
+			<a href="#" rel="tooltip" class="btn" title="Курсив" onClick="javascript:bb(<?php echo $panel_id; ?>, '[i]', '[/i]'); return false;"><i>i</i></a>
+			<a href="#" rel="tooltip" class="btn" title="Зачеркнутый" onClick="javascript:bb(<?php echo $panel_id; ?>, '[s]', '[/s]'); return false;"><s>S</s></a>
+			<a href="#" rel="tooltip" class="btn" title="Подчеркнутый" onClick="javascript:bb(<?php echo $panel_id; ?>, '[u]', '[/u]'); return false;"><u>u</u></a>
+			<a href="#" rel="tooltip" class="btn" title="Выравнивание по левому краю" onClick="javascript:bb(<?php echo $panel_id; ?>, '[left]', '[/left]'); return false;"><i class="icon-align-left"></i></a>
+			<a href="#" rel="tooltip" class="btn" title="Выравнивание по центру" onClick="javascript:bb(<?php echo $panel_id; ?>, '[center]', '[/center]'); return false;"><i class="icon-align-center"></i></a>
+			<a href="#" rel="tooltip" class="btn" title="Выравнивание по правому краю" onClick="javascript:bb(<?php echo $panel_id; ?>, '[right]', '[/right]'); return false;"><i class="icon-align-right"></i></a>
+			<a href="#" rel="tooltip" class="btn" title="Код" onClick="javascript:bb(<?php echo $panel_id; ?>, '[code]', '[/code]'); return false;"><i class="icon-qrcode"></i></a>
+			<a href="#" rel="tooltip" class="btn" title="Ссылка" onClick="javascript:bb(<?php echo $panel_id; ?>, '[url=&quot;&quot;]', '[/url]'); return false;"><i class="icon-globe"></i></a>
+			<a href="#" rel="tooltip" class="btn" title="Размер шрифта" onClick="javascript:bb(<?php echo $panel_id; ?>, '[size=&quot;&quot;]', '[/size]'); return false;"><i class="icon-text-height"></i></a>
+		</div>
+	</div>
+	<div class="btn-toolbar cube">
+		<div class="btn-group">
+			<a href="#" rel="tooltip" class="btn" title="Изображение" onClick="javascript:bb(<?php echo $panel_id; ?>, '[img]', '[/img]'); return false;"><i class="icon-picture"></i></a>
+			<a href="#" rel="tooltip" class="btn" title="Цвет текста" onClick="javascript:bb(<?php echo $panel_id; ?>, '[color=&quot;&quot;]', '[/color]'); return false;"><i class="icon-tint"></i></a>
+			<a href="#" rel="tooltip" class="btn"  title="Цитата" onClick="javascript:bb(<?php echo $panel_id; ?>, '[quote]', '[/quote]'); return false;"><i class="icon-comment"></i></a>
+		</div>
+	</div>
+	<textarea name="<?php echo $name; ?>" id="<?php echo $panel_id; ?>" placeholder="Текст"><?php echo $value; ?></textarea>
+</div>
