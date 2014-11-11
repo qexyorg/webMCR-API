@@ -19,4 +19,8 @@ $api->url = "?mode=YOUR_MODULE";
 
 $api->style = STYLE_URL;
 
+// Set default module config
+
+$api->cfg = YOUR_MODULE_CONFIG;
+
 /*************************** Install API ***************************/
