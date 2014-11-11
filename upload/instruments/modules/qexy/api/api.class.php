@@ -20,6 +20,7 @@ class api{
 	public $def_style = '';
 	public $url = '';
 	public $user = false;
+	public $cfg = array();
 
 	public function __construct($db=false, $user=false){
 		$this->def_style = STYLE_URL.'Default/modules/qexy/api/';
@@ -279,7 +280,7 @@ class api{
 	 * @return - String
 	 *
 	*/
-	public function pagination($res=10, $page='', $sql=''){
+	public function pagination($res=10, $page='', $sql='', $theme=''){
 		ob_start();
 
 		if($this->db===false){ return ob_get_clean(); }
@@ -299,7 +300,8 @@ class api{
 			if($pid+1<=$max){$NextPge	='<li><a href="'.BASE_URL.$this->url.$page.($pid+1).'">'.($pid+1).'</a></li>';}else{$NextPge ='';}
 			if($pid+2<=$max){$Next2Pge	='<li><a href="'.BASE_URL.$this->url.$page.($pid+2).'">'.($pid+2).'</a></li>';}else{$Next2Pge ='';}
 			$LastPge='<li><a href="'.BASE_URL.$this->url.$page.$max.'">>></a></li>';
-			include(API_STYLE."pagination.html");
+			$path = (empty($theme)) ? API_STYLE."pagination.html" : $theme;
+			include($path);
 		}
 
 		return ob_get_clean();
@@ -435,6 +437,24 @@ class api{
 		include(API_STYLE."breadcrumbs.html");
 
 		return ob_get_clean();
+	}
+
+	/**
+	 * filter_array_integer(@param) - Filter array variables to integer
+	 *
+	 * @param - Array
+	 *
+	 * @return - Array
+	 *
+	*/
+	public function filter_array_integer($array){
+		if(empty($array)){ return false; }
+		$new_ar = array();
+		foreach($array as $key => $value){
+			$new_ar[] = intval($value);
+		}
+
+		return $new_ar;
 	}
 }
 
