@@ -14,7 +14,7 @@
 
 if (!defined('QEXY_API')){ exit("Hacking Attempt!"); }
 
-class statics_db{
+class api_db{
 
 	/**
 	 * Public Method MQ(@param)
