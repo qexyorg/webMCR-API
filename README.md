@@ -25,6 +25,7 @@ $api->cfg = YOUR_MODULE_CONFIG;
 
 
 /* If you use webmcr 2.4+ */
+
 Open file style/Default/index.html and add strings
 <script src="<?php View::URL('modules/qexy/api/js/jquery.js') ?>"></script>
 <script src="<?php View::URL('modules/qexy/api/js/bootstrap.min.js') ?>"></script>
