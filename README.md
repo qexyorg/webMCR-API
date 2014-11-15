@@ -23,10 +23,23 @@ $api->style = STYLE_URL;
 
 $api->cfg = YOUR_MODULE_CONFIG;
 
+Open file style/Default/index.html and add strings
+
+/* If you use webmcr 2.3+ */
+
+Remove strings
+<script src="<?php View::URL('js/jquery.js') ?>"></script>
+<script src="<?php View::URL('js/bootstrap.min.js') ?>"></script>
+
+And add strings
+<script src="<?php View::URL('modules/qexy/api/js/jquery.js') ?>"></script>
+<script src="<?php View::URL('modules/qexy/api/js/bootstrap.min.js') ?>"></script>
+
+Before
+<?php echo $content_js ?>
 
 /* If you use webmcr 2.4+ */
 
-Open file style/Default/index.html and add strings
 <script src="<?php View::URL('modules/qexy/api/js/jquery.js') ?>"></script>
 <script src="<?php View::URL('modules/qexy/api/js/bootstrap.min.js') ?>"></script>
 Before
@@ -34,6 +47,5 @@ Before
 
 And remove string
 <script src="<?php View::URL('js/bootstrap-without-jquery.js') ?>"></script>
-
 
 /*************************** Install API ***************************/
