@@ -1,14 +1,14 @@
 <?php
 /**
- * API for WebMCR
+ * API instruments for WebMCR
  *
- * MySQLi class for using database
+ * MySQLi class for database
  * 
  * @author Qexy.org (admin@qexy.org)
  *
- * @copyright Copyright (c) 2014 Qexy.org
+ * @copyright Copyright (c) 2015 Qexy.org
  *
- * @version 1.0
+ * @version 1.1.0
  *
  */
 
@@ -124,15 +124,15 @@ class api_db{
 }
 
 /**
- * API for WebMCR
+ * API instruments for WebMCR
  *
- * MySQLi class for using database
+ * MySQLi class for database
  * 
  * @author Qexy.org (admin@qexy.org)
  *
- * @copyright Copyright (c) 2014 Qexy.org
+ * @copyright Copyright (c) 2015 Qexy.org
  *
- * @version 1.0
+ * @version 1.1.0
  *
  */
 ?>

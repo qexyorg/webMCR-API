@@ -1,14 +1,14 @@
 <?php
 /**
- * API for WebMCR
+ * API instruments for WebMCR
  *
- * MySQL class for old version webmcr
+ * MySQL class for database (old version webmcr)
  * 
  * @author Qexy.org (admin@qexy.org)
  *
- * @copyright Copyright (c) 2014 Qexy.org
+ * @copyright Copyright (c) 2015 Qexy.org
  *
- * @version 1.0
+ * @version 1.1.0
  *
  */
 
@@ -24,7 +24,7 @@ class api_db{
 	 * @return resource or false(boolean)
 	 *
 	 */
-	public function query($query){
+	public function query($query, $num=0){
 		$_SESSION['count_mq']++;
 		return BD($query);
 	}
@@ -111,15 +111,15 @@ class api_db{
 }
 
 /**
- * API for WebMCR
+ * API instruments for WebMCR
  *
- * MySQL class for old version webmcr
+ * MySQL class for database (old version webmcr)
  * 
  * @author Qexy.org (admin@qexy.org)
  *
- * @copyright Copyright (c) 2014 Qexy.org
+ * @copyright Copyright (c) 2015 Qexy.org
  *
- * @version 1.0
+ * @version 1.1.0
  *
  */
 ?>

@@ -1,24 +1,83 @@
-<div class="api-bb-panel">
-	<div class="btn-toolbar">
-		<div class="btn-group">
-			<a href="#" rel="tooltip" class="btn" title="Жирный" onClick="javascript:bb(<?php echo $panel_id; ?>, '[b]', '[/b]'); return false;"><b>B</b></a>
-			<a href="#" rel="tooltip" class="btn" title="Курсив" onClick="javascript:bb(<?php echo $panel_id; ?>, '[i]', '[/i]'); return false;"><i>i</i></a>
-			<a href="#" rel="tooltip" class="btn" title="Зачеркнутый" onClick="javascript:bb(<?php echo $panel_id; ?>, '[s]', '[/s]'); return false;"><s>S</s></a>
-			<a href="#" rel="tooltip" class="btn" title="Подчеркнутый" onClick="javascript:bb(<?php echo $panel_id; ?>, '[u]', '[/u]'); return false;"><u>u</u></a>
-			<a href="#" rel="tooltip" class="btn" title="Выравнивание по левому краю" onClick="javascript:bb(<?php echo $panel_id; ?>, '[left]', '[/left]'); return false;"><i class="icon-align-left"></i></a>
-			<a href="#" rel="tooltip" class="btn" title="Выравнивание по центру" onClick="javascript:bb(<?php echo $panel_id; ?>, '[center]', '[/center]'); return false;"><i class="icon-align-center"></i></a>
-			<a href="#" rel="tooltip" class="btn" title="Выравнивание по правому краю" onClick="javascript:bb(<?php echo $panel_id; ?>, '[right]', '[/right]'); return false;"><i class="icon-align-right"></i></a>
-			<a href="#" rel="tooltip" class="btn" title="Код" onClick="javascript:bb(<?php echo $panel_id; ?>, '[code]', '[/code]'); return false;"><i class="icon-qrcode"></i></a>
-			<a href="#" rel="tooltip" class="btn" title="Ссылка" onClick="javascript:bb(<?php echo $panel_id; ?>, '[url=&quot;&quot;]', '[/url]'); return false;"><i class="icon-globe"></i></a>
-			<a href="#" rel="tooltip" class="btn" title="Размер шрифта" onClick="javascript:bb(<?php echo $panel_id; ?>, '[size=&quot;&quot;]', '[/size]'); return false;"><i class="icon-text-height"></i></a>
+		<div class="navbar api-bb-panel" data-for="<?php echo $for; ?>">
+			<div class="navbar-inner">
+				<div class="container">
+
+					<a class="btn btn-navbar" data-toggle="collapse" data-target="#<?php echo $target; ?>">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+
+					<div class="nav-collapse collapse" id="<?php echo $target; ?>">
+						<ul class="nav">
+							<li><a href="#bb" rel="tooltip" title="Жирный" data-left="b"><b>B</b></a></li>
+
+							<li><a href="#bb" rel="tooltip" title="Курсив" data-left="i"><i>i</i></a></li>
+
+							<li><a href="#bb" rel="tooltip" title="Подчеркнутый" data-left="u"><u>u</u></a></li>
+
+							<li><a href="#bb" rel="tooltip" title="Зачеркнутый" data-left="s"><s>S</s></a></li>
+
+							<li><a href="#bb" rel="tooltip" title="Ссылка" data-left='url=""' data-right='url'><i class="icon-globe"></i></a></li>
+
+							<li><a href="#bb" rel="tooltip" title="Цитата" data-left="quote"><i class="icon-comment"></i></a></li>
+
+							<li><a href="#bb" rel="tooltip" title="Изображение" data-left="img"><i class="icon-picture"></i></a></li>
+
+							<li><a href="#bb" rel="tooltip" title="YouTube видео" data-left="youtube"><i class="icon-facetime-video"></i></a></li>
+
+							<li><a href="#bb" rel="tooltip" title="Цвет текста" data-left='color=""' data-right="color"><i class="icon-tint"></i></a></li>
+
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" rel="tooltip" title="Выравнивание" data-toggle="dropdown">
+									<i class="icon-align-justify"></i>
+									<b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#bb" rel="tooltip" data-placement="right" title="По левому краю" data-left="left"><i class="icon-align-left"></i></a></li>
+									<li><a href="#bb" rel="tooltip" data-placement="right" title="По центру" data-left="center"><i class="icon-align-center"></i></a></li>
+									<li><a href="#bb" rel="tooltip" data-placement="right" title="По правому краю" data-left="right"><i class="icon-align-right"></i></a></li>
+								</ul>
+							</li>
+
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" rel="tooltip" title="Размер шрифта" data-toggle="dropdown">
+									<i class="icon-text-height"></i>
+									<b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#bb" rel="tooltip" data-placement="right" title="Самый маленький" data-left='size="1"' data-right="size"><font size="1">1</font></a></li>
+									<li><a href="#bb" rel="tooltip" data-placement="right" title="Маленький" data-left='size="2"' data-right="size"><font size="2">2</font></a></li>
+									<li><a href="#bb" rel="tooltip" data-placement="right" title="Стандартный" data-left='size="3"' data-right="size"><font size="3">3</font></a></li>
+									<li><a href="#bb" rel="tooltip" data-placement="right" title="Средний" data-left='size="4"' data-right="size"><font size="4">4</font></a></li>
+									<li><a href="#bb" rel="tooltip" data-placement="right" title="Большой" data-left='size="5"' data-right="size"><font size="5">5</font></a></li>
+									<li><a href="#bb" rel="tooltip" data-placement="right" title="Самый большой" data-left='size="6"' data-right="size"><font size="6">6</font></a></li>
+								</ul>
+							</li>
+
+							<li><a href="#" class="api-spl-target" data-for="#smiles-body">Смайлики</a></li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+			<!-- Smiles -->
+			<div class="api-spl" id="smiles-body">
+				<div class="api-spl-body">
+					<a href="#bb" class="btn" data-left=':)' data-right=""><img src="<?php echo BASE_URL; ?>qx_upload/api/smiles/1.gif" alt=":)" /></a>
+					<a href="#bb" class="btn" data-left=':(' data-right=""><img src="<?php echo BASE_URL; ?>qx_upload/api/smiles/2.gif" alt=":(" /></a>
+					<a href="#bb" class="btn" data-left=';)' data-right=""><img src="<?php echo BASE_URL; ?>qx_upload/api/smiles/3.gif" alt=";)" /></a>
+					<a href="#bb" class="btn" data-left=':bear:' data-right=""><img src="<?php echo BASE_URL; ?>qx_upload/api/smiles/4.gif" alt=":bear:" /></a>
+					<a href="#bb" class="btn" data-left=':good:' data-right=""><img src="<?php echo BASE_URL; ?>qx_upload/api/smiles/5.gif" alt=":good:" /></a>
+					<a href="#bb" class="btn" data-left=':wall:' data-right=""><img src="<?php echo BASE_URL; ?>qx_upload/api/smiles/6.gif" alt=":wall:" /></a>
+					<a href="#bb" class="btn" data-left=':D' data-right=""><img src="<?php echo BASE_URL; ?>qx_upload/api/smiles/7.gif" alt=":D:" /></a>
+					<a href="#bb" class="btn" data-left=':shy:' data-right=""><img src="<?php echo BASE_URL; ?>qx_upload/api/smiles/8.gif" alt=":shy:" /></a>
+					<a href="#bb" class="btn" data-left=':secret:' data-right=""><img src="<?php echo BASE_URL; ?>qx_upload/api/smiles/9.gif" alt=":secret:" /></a>
+					<a href="#bb" class="btn" data-left=':dance:' data-right=""><img src="<?php echo BASE_URL; ?>qx_upload/api/smiles/10.gif" alt=":dance:" /></a>
+					<a href="#bb" class="btn" data-left=':rock:' data-right=""><img src="<?php echo BASE_URL; ?>qx_upload/api/smiles/11.gif" alt=":rock:" /></a>
+					<a href="#bb" class="btn" data-left=':sos:' data-right=""><img src="<?php echo BASE_URL; ?>qx_upload/api/smiles/12.gif" alt=":sos:" /></a>
+					<a href="#bb" class="btn" data-left=':girl:' data-right=""><img src="<?php echo BASE_URL; ?>qx_upload/api/smiles/13.gif" alt=":girl:" /></a>
+					<a href="#bb" class="btn" data-left=':facepalm:' data-right=""><img src="<?php echo BASE_URL; ?>qx_upload/api/smiles/14.gif" alt=":facepalm:" /></a>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="btn-toolbar cube">
-		<div class="btn-group">
-			<a href="#" rel="tooltip" class="btn" title="Изображение" onClick="javascript:bb(<?php echo $panel_id; ?>, '[img]', '[/img]'); return false;"><i class="icon-picture"></i></a>
-			<a href="#" rel="tooltip" class="btn" title="Цвет текста" onClick="javascript:bb(<?php echo $panel_id; ?>, '[color=&quot;&quot;]', '[/color]'); return false;"><i class="icon-tint"></i></a>
-			<a href="#" rel="tooltip" class="btn"  title="Цитата" onClick="javascript:bb(<?php echo $panel_id; ?>, '[quote]', '[/quote]'); return false;"><i class="icon-comment"></i></a>
-		</div>
-	</div>
-	<textarea name="<?php echo $name; ?>" id="<?php echo $panel_id; ?>" placeholder="Текст"><?php echo $value; ?></textarea>
-</div>

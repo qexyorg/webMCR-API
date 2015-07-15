@@ -1,9 +1,22 @@
 <?php
+/**
+ * API instruments for WebMCR
+ *
+ * General proccess
+ * 
+ * @author Qexy.org (admin@qexy.org)
+ *
+ * @copyright Copyright (c) 2015 Qexy.org
+ *
+ * @version 1.1.0
+ *
+ */
+
 // Check webmcr constant
 if(!defined('MCR')){ exit("Hacking Attempt!"); }
 
 // Set default constant with API version
-define('QEXY_API', '1.0');
+define('QEXY_API', '1.1.0');
 
 // Set default API directory
 define('API_DIR', MCR_ROOT.'instruments/modules/qexy/api/');
@@ -127,6 +140,44 @@ class api{
 		$text = preg_replace("/\[img\](((ht|f)tps?:(?:\/\/)?)(?:[^<\s\'\"]+))\[\/img\]/Usi", "<img src=\"$1\">", $text);
 		$text = preg_replace("/\[color=(?:&#039;|&quot;|\'|\")(\#[a-z0-9]{6})(?:&#039;|&quot;|\'|\")\](.*)\[\/color\]/Usi", "<font color=\"$1\">$2</font>", $text);
 		$text = preg_replace("/\[size=(?:&#039;|&quot;|\'|\")([1-6]{1})(?:&#039;|&quot;|\'|\")\](.*)\[\/size\]/Usi", "<font size=\"$1\">$2</font>", $text);
+		//<iframe width="560" height="315" src="https://www.youtube.com/embed/m8oMm_q1bpk" frameborder="0" allowfullscreen></iframe>
+		$text = preg_replace("/\[youtube\](http|https)\:\/\/www\.youtube.com\/watch\?v=([\w-]+)\[\/youtube\]/Usi", "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/$2\" frameborder=\"0\" allowfullscreen></iframe>", $text);
+
+		$smile_list = array(
+			'[:)]',
+			'[:(]',
+			'[;)]',
+			'[:bear:]',
+			'[:good:]',
+			'[:wall:]',
+			'[:D]',
+			'[:shy:]',
+			'[:secret:]',
+			'[:dance:]',
+			'[:rock:]',
+			'[:sos:]',
+			'[:girl:]',
+			'[:facepalm:]',
+		);
+
+		$smile_replace = array(
+			'<img src="'.BASE_URL.'qx_upload/api/smiles/1.gif" alt=":)" />',
+			'<img src="'.BASE_URL.'qx_upload/api/smiles/2.gif" alt=":(" />',
+			'<img src="'.BASE_URL.'qx_upload/api/smiles/3.gif" alt=";)" />',
+			'<img src="'.BASE_URL.'qx_upload/api/smiles/4.gif" alt=":bear:" />',
+			'<img src="'.BASE_URL.'qx_upload/api/smiles/5.gif" alt=":good:" />',
+			'<img src="'.BASE_URL.'qx_upload/api/smiles/6.gif" alt=":wall:" />',
+			'<img src="'.BASE_URL.'qx_upload/api/smiles/7.gif" alt=":D" />',
+			'<img src="'.BASE_URL.'qx_upload/api/smiles/8.gif" alt=":shy:" />',
+			'<img src="'.BASE_URL.'qx_upload/api/smiles/9.gif" alt=":secret:" />',
+			'<img src="'.BASE_URL.'qx_upload/api/smiles/10.gif" alt=":dance:" />',
+			'<img src="'.BASE_URL.'qx_upload/api/smiles/11.gif" alt=":rock:" />',
+			'<img src="'.BASE_URL.'qx_upload/api/smiles/12.gif" alt=":sos:" />',
+			'<img src="'.BASE_URL.'qx_upload/api/smiles/13.gif" alt=":girl:" />',
+			'<img src="'.BASE_URL.'qx_upload/api/smiles/14.gif" alt=":facepalm:" />',
+		);
+
+		$text = str_replace($smile_list, $smile_replace, $text);
 
 		$text = $this->BBquote($text);
 
@@ -134,18 +185,16 @@ class api{
 	}
 
 	/**
-	 * bb_panel(@param $value, @param @name, @param $panel_id) - Get BB panel
+	 * bb_panel(@param $for) - Get BB panel
 	 *
-	 * @param $value - String
+	 * @param $for - String
 	 *
-	 * @param $name - String
-	 *
-	 * @param $panel_id - String
+	 * @param $target - String
 	 *
 	 * @return String
 	 *
 	*/
-	public function bb_panel($value='', $name='comments', $panel_id='bbc'){
+	public function bb_panel($for='.bb-textarea', $target='panel-target'){
 		ob_start();
 
 		include_once(API_STYLE.'bb-panel.html');
@@ -465,4 +514,16 @@ $api = new api($api_db, $api_user);
 $content_js .= '<link href="'.API_STYLE.'css/style.css" rel="stylesheet">';
 $content_js .= '<script src="'.API_STYLE.'js/content.js"></script>';
 
+/**
+ * API instruments for WebMCR
+ *
+ * General proccess
+ * 
+ * @author Qexy.org (admin@qexy.org)
+ *
+ * @copyright Copyright (c) 2015 Qexy.org
+ *
+ * @version 1.1.0
+ *
+ */
 ?>

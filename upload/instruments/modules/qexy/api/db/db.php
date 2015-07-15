@@ -1,4 +1,16 @@
 <?php
+/**
+ * API instruments for WebMCR
+ *
+ * Database process
+ * 
+ * @author Qexy.org (admin@qexy.org)
+ *
+ * @copyright Copyright (c) 2015 Qexy.org
+ *
+ * @version 1.1.0
+ *
+ */
 
 if(!defined('QEXY_API')){ exit("Hacking Attempt!"); }
 
@@ -21,5 +33,16 @@ require_once(MCR_ROOT.'instruments/modules/qexy/api/db/'.$driver.'.class.php');
 
 $api_db = new api_db();
 
-
+/**
+ * API instruments for WebMCR
+ *
+ * Database process
+ * 
+ * @author Qexy.org (admin@qexy.org)
+ *
+ * @copyright Copyright (c) 2015 Qexy.org
+ *
+ * @version 1.1.0
+ *
+ */
 ?>

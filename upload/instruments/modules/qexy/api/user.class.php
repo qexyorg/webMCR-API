@@ -1,4 +1,17 @@
 <?php
+/**
+ * API instruments for WebMCR
+ *
+ * User class
+ * 
+ * @author Qexy.org (admin@qexy.org)
+ *
+ * @copyright Copyright (c) 2015 Qexy.org
+ *
+ * @version 1.1.0
+ *
+ */
+
 if(!defined('QEXY_API')){ exit("Hacking Attempt!"); }
 
 class api_user{
@@ -29,4 +42,16 @@ $api_money  = (isset($player_money)) ? $player_money : 0;
 
 $api_user = new api_user($user, $api_money);
 
+/**
+ * API instruments for WebMCR
+ *
+ * User class
+ * 
+ * @author Qexy.org (admin@qexy.org)
+ *
+ * @copyright Copyright (c) 2015 Qexy.org
+ *
+ * @version 1.1.0
+ *
+ */
 ?>
