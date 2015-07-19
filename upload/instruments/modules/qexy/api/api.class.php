@@ -498,6 +498,7 @@ class api{
 	*/
 	public function filter_array_integer($array){
 		if(empty($array)){ return false; }
+		if(count($array)<=1){ return array(intval($array)); }
 		$new_ar = array();
 		foreach($array as $key => $value){
 			$new_ar[] = intval($value);
