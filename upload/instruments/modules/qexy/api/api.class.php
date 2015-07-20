@@ -8,7 +8,7 @@
  *
  * @copyright Copyright (c) 2015 Qexy.org
  *
- * @version 1.1.0
+ * @version 1.2.0
  *
  */
 
@@ -16,7 +16,7 @@
 if(!defined('MCR')){ exit("Hacking Attempt!"); }
 
 // Set default constant with API version
-define('QEXY_API', '1.1.0');
+define('QEXY_API', '1.2.0');
 
 // Set default API directory
 define('API_DIR', MCR_ROOT.'instruments/modules/qexy/api/');
@@ -565,7 +565,7 @@ $content_js .= '<script src="'.API_STYLE.'js/content.js"></script>';
  *
  * @copyright Copyright (c) 2015 Qexy.org
  *
- * @version 1.1.0
+ * @version 1.2.0
  *
  */
 ?>

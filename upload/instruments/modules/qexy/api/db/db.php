@@ -8,7 +8,7 @@
  *
  * @copyright Copyright (c) 2015 Qexy.org
  *
- * @version 1.1.0
+ * @version 1.2.0
  *
  */
 
@@ -42,7 +42,7 @@ $api_db = new api_db();
  *
  * @copyright Copyright (c) 2015 Qexy.org
  *
- * @version 1.1.0
+ * @version 1.2.0
  *
  */
 ?>

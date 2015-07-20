@@ -8,7 +8,7 @@
  *
  * @copyright Copyright (c) 2015 Qexy.org
  *
- * @version 1.1.0
+ * @version 1.2.0
  *
  */
 
@@ -51,7 +51,7 @@ $api_user = new api_user($user, $api_money);
  *
  * @copyright Copyright (c) 2015 Qexy.org
  *
- * @version 1.1.0
+ * @version 1.2.0
  *
  */
 ?>
