@@ -34,6 +34,7 @@ class api{
 	public $url = '';
 	public $user = false;
 	public $cfg = array();
+	public $email = false;
 
 	public function __construct($db=false, $user=false){
 		$this->def_style = STYLE_URL.'Default/modules/qexy/api/';
@@ -505,6 +506,46 @@ class api{
 		}
 
 		return $new_ar;
+	}
+
+	public function email_load($ssl=true){
+		require_once(API_DIR.'mail/PHPMailerAutoload.php');
+
+		$this->email = new PHPMailer;
+		//$this->email->SMTPDebug = 3;												// Enable verbose debug output
+		$this->email->CharSet = "UTF-8";
+
+		$cfg = $this->getMcrConfig();
+
+		$config = $cfg['config'];
+
+		$this->email->setLanguage('ru', API_DIR.'mail/');
+
+		if($config['smtp']){
+			$this->email->isSMTP();											// Set mailer to use SMTP
+			$this->email->Host = sqlConfigGet('smtp-host');					// Specify main and backup SMTP servers
+			$this->email->SMTPAuth = true;									// Enable SMTP authentication
+			$this->email->Username = sqlConfigGet('smtp-user');				// SMTP username
+			$this->email->Password = sqlConfigGet('smtp-pass');				// SMTP password
+			$this->email->SMTPSecure = ($ssl) ? 'ssl' : 'tls';	// Enable TLS encryption, `ssl` also accepted
+			$this->email->Port = sqlConfigGet('smtp-port');					// TCP port to connect to
+		}
+
+		$this->email->FromName = sqlConfigGet('email-mail');
+		$this->email->From = sqlConfigGet('email-mail');
+		$this->email->addReplyTo(sqlConfigGet('email-mail'), sqlConfigGet('email-name'));
+
+		$this->email->isHTML(true);											// Set email format to HTML
+	}
+
+	public function email($to, $subject, $message){
+
+		$this->email->addAddress($to);										// Add a recipient
+		$this->email->Subject = $subject;
+		$this->email->Body    = $message;
+		$this->email->AltBody = strip_tags($message);
+
+		return $this->email->send();
 	}
 }
 
