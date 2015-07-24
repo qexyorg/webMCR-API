@@ -19,7 +19,7 @@ $api = new api();
 
 $do = (isset($_GET['do'])) ? $_GET['do'] : false;
 
-if(!$do!==false && file_exists(API_MOD_DIR.$do.'.php')){
+if($do!==false && file_exists(API_MOD_DIR.$do.'.php')){
 	require_once(API_MOD_DIR.$do.'.php');
 }else{
 	$api->result('Action is not set!');
