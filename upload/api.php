@@ -17,7 +17,7 @@ require_once(API_DIR_REMOTE."api.class.php");
 
 $api = new api();
 
-if(!isset($_REQUEST['apicsrf'])){ $api->result('Incorrect security key') }
+if(!isset($_REQUEST['apicsrf'])){ $api->result('Incorrect security key'); }
 
 $apicfg = md5($api->getIP().$api->cfg['csrfkey']);
 if($_REQUEST['apicsrf']!==$apicfg){ $api->result('Incorrect security key'); }
