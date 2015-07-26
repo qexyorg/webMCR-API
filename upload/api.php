@@ -1,5 +1,7 @@
 <?php
 
+if(!isset($_SESSION)){ session_start(); }
+
 define('QEXY_API', '1.3.0');
 define('DIR_ROOT', dirname(__FILE__).'/');
 
@@ -19,7 +21,7 @@ $api = new api();
 
 if(!isset($_REQUEST['apicsrf'])){ $api->result('Incorrect security key'); }
 
-$apicfg = md5($api->getIP().$api->cfg['csrfkey']);
+$apicfg = md5($api->getIP().@$_SERVER['HTTP_USER_AGENT'].$api->cfg['csrfkey']);
 if($_REQUEST['apicsrf']!==$apicfg){ $api->result('Incorrect security key'); }
 
 $do = (isset($_GET['do'])) ? $_GET['do'] : false;
