@@ -18,6 +18,7 @@ class api{
 	public $mcfg = array();
 	public $db = false;
 	public $user = false;
+	public $cfg = array();
 
 	public function __construct(){
 
@@ -43,6 +44,16 @@ class api{
 		require_once(API_DIR_REMOTE.'user.class.php');
 
 		$this->user = new user($this);
+
+		// Loading DB class (mysqli)
+		require_once(DIR_ROOT.'configs/rapi.cfg.php');
+
+		if($cfg['csrfkey']===false){
+			$cfg['csrfkey'] = md5($this->gen(20, true));
+			if(!$this->savecfg($cfg, 'configs/rapi.cfg.php')){ $this->result('Not have a permissions for save configs/rapi.cfg.php'); }
+		}
+
+		$this->cfg = $cfg;
 	}
 
 	public function result($msg='', $type=false, $data=array()){
