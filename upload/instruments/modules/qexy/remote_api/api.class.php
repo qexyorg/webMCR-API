@@ -28,7 +28,7 @@ class api{
 			'config' => $config,
 			'bd_names' => $bd_names,
 			'bd_users' => $bd_users,
-			'bd_money' => $site_ways,
+			'bd_money' => $bd_money,
 			'site_ways' => $site_ways
 		);
 
