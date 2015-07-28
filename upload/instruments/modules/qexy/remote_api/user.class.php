@@ -56,7 +56,7 @@ class user{
 
 		$bd_names = $this->mcfg['bd_names'];
 		$bd_users = $this->mcfg['bd_users'];
-		$bd_money = $this->mcfg['bd_users'];
+		$bd_money = $this->mcfg['bd_money'];
 
 		$is_iconomy_table = (is_bool($bd_names['iconomy'])) ? "" : "LEFT JOIN `{$bd_names['iconomy']}` AS `i` ON `i`.`{$bd_money['login']}`=`u`.`{$bd_users['login']}`";
 		$is_iconomy_rows = (is_bool($bd_names['iconomy'])) ? "" : ", `i`.`{$bd_money['money']}`";
