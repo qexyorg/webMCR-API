@@ -67,7 +67,7 @@ class user{
 											`u`.`{$bd_users['ip']}`, `u`.`{$bd_users['email']}`, `u`.`{$bd_users['female']}`,
 											`u`.`{$bd_users['group']}`, `u`.`{$bd_users['ctime']}`, `u`.comments_num,
 											`u`.gameplay_last, `u`.active_last, `u`.default_skin,
-											`g`.`name`, `g`.`lvl`, `g`.`system`, `g`.`lvl`, `g`.`change_skin`, `g`.`change_pass`,
+											`g`.`name` AS `group_name`, `g`.`lvl`, `g`.`system`, `g`.`lvl`, `g`.`change_skin`, `g`.`change_pass`,
 											`g`.`change_login`, `g`.`change_cloak`, `g`.`add_news`, `g`.`add_comm`,
 											`g`.`adm_comm`, `g`.`max_fsize`, `g`.`max_ratio`$is_iconomy_rows
 									FROM `{$bd_names['users']}` AS `u`
@@ -93,7 +93,7 @@ class user{
 		$this->default_skin		= intval($ar['default_skin']);
 
 		$this->group			= intval($ar[$bd_users['group']]);
-		$this->group_name		= $this->db->HSC($ar['name']);
+		$this->group_name		= $this->db->HSC($ar['group_name']);
 		$this->lvl				= intval($ar['lvl']);
 		$this->group_system		= (intval($ar['system'])===1) ? true : false;
 
