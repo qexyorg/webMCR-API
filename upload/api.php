@@ -26,7 +26,7 @@ if($_REQUEST['apicsrf']!==$apicfg){ $api->result('Incorrect security key'); }
 
 $do = (isset($_GET['do'])) ? $_GET['do'] : false;
 
-if($do!==false && file_exists(API_MOD_DIR.$do.'.php')){
+if($do!==false && preg_match("/^\w+$/i", $do) && file_exists(API_MOD_DIR.$do.'.php')){
 	require_once(API_MOD_DIR.$do.'.php');
 }else{
 	$api->result('Action is not set!');
