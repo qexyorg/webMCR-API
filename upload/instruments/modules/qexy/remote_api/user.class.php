@@ -48,7 +48,7 @@ class user{
 
 	public function __construct($api){
 
-		if(!isset($_COOKIE['PRTCookie1']) || empty($_COOKIE['PRTCookie1'])){ return false; }
+		if(!isset($_COOKIE['PRTCookie1']) || empty($_COOKIE['PRTCookie1'])){ $this->set_unauth(); return false; }
 
 		$this->api = $api;
 		$this->db = $api->db;
@@ -76,7 +76,7 @@ class user{
 									$is_iconomy_table
 									WHERE `u`.`{$bd_users['tmp']}`='$tmp'");
 
-		if(!$query || $this->db->num_rows($query)<=0){ return false; }
+		if(!$query || $this->db->num_rows($query)<=0){ $this->set_unauth(); return false; }
 
 		$ar = $this->db->get_row($query);
 
@@ -116,6 +116,12 @@ class user{
 		$this->is_auth			= true;
 	}
 
+	private function set_unauth(){
+		setcookie("PRTCookie1", "", time()-3600, '/');
+		if(isset($_SESSION['user_name'])){ unset($_SESSION['user_name']); }
+		if(isset($_SESSION['ip'])){ unset($_SESSION['ip']); }
+		return true;
+	}
 }
 
 /**
