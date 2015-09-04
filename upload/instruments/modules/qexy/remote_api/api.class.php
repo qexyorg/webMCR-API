@@ -200,6 +200,24 @@ class api{
 	}
 
 	/**
+	 * sp(@param $page, @param $data) - Get static page
+	 *
+	 * @param $page path to file
+	 *
+	 * @param $data Array variables for loaded file
+	 *
+	 * @return String
+	 *
+	*/
+	public function sp($page, $data=false){
+		ob_start();
+		
+		include($page);
+
+		return ob_get_clean();
+	}
+
+	/**
 	 * getIP() - Get real user IP
 	 *
 	 * @return String
