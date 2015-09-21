@@ -51,4 +51,14 @@ $(function(){
 
 		return false;
 	});
+
+	$('body').on('click', '.api-check-all', function(){
+		var for_elem = $(this).attr('data-for');
+
+		if($(this)[0].checked){
+			$('input[type="checkbox"].'+for_elem).prop('checked', true);
+		}else{
+			$('input[type="checkbox"].'+for_elem).prop('checked', false);
+		}
+	});
 });
