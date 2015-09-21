@@ -136,21 +136,24 @@ class api{
 			'[:girl:]',
 			'[:facepalm:]',
 		);
+
+		$base_url = $this->mcfg['config']['s_root'];
+
 		$smile_replace = array(
-			'<img src="'.BASE_URL.'qx_upload/api/smiles/1.gif" alt=":)" />',
-			'<img src="'.BASE_URL.'qx_upload/api/smiles/2.gif" alt=":(" />',
-			'<img src="'.BASE_URL.'qx_upload/api/smiles/3.gif" alt=";)" />',
-			'<img src="'.BASE_URL.'qx_upload/api/smiles/4.gif" alt=":bear:" />',
-			'<img src="'.BASE_URL.'qx_upload/api/smiles/5.gif" alt=":good:" />',
-			'<img src="'.BASE_URL.'qx_upload/api/smiles/6.gif" alt=":wall:" />',
-			'<img src="'.BASE_URL.'qx_upload/api/smiles/7.gif" alt=":D" />',
-			'<img src="'.BASE_URL.'qx_upload/api/smiles/8.gif" alt=":shy:" />',
-			'<img src="'.BASE_URL.'qx_upload/api/smiles/9.gif" alt=":secret:" />',
-			'<img src="'.BASE_URL.'qx_upload/api/smiles/10.gif" alt=":dance:" />',
-			'<img src="'.BASE_URL.'qx_upload/api/smiles/11.gif" alt=":rock:" />',
-			'<img src="'.BASE_URL.'qx_upload/api/smiles/12.gif" alt=":sos:" />',
-			'<img src="'.BASE_URL.'qx_upload/api/smiles/13.gif" alt=":girl:" />',
-			'<img src="'.BASE_URL.'qx_upload/api/smiles/14.gif" alt=":facepalm:" />',
+			'<img src="'.$base_url.'qx_upload/api/smiles/1.gif" alt=":)" />',
+			'<img src="'.$base_url.'qx_upload/api/smiles/2.gif" alt=":(" />',
+			'<img src="'.$base_url.'qx_upload/api/smiles/3.gif" alt=";)" />',
+			'<img src="'.$base_url.'qx_upload/api/smiles/4.gif" alt=":bear:" />',
+			'<img src="'.$base_url.'qx_upload/api/smiles/5.gif" alt=":good:" />',
+			'<img src="'.$base_url.'qx_upload/api/smiles/6.gif" alt=":wall:" />',
+			'<img src="'.$base_url.'qx_upload/api/smiles/7.gif" alt=":D" />',
+			'<img src="'.$base_url.'qx_upload/api/smiles/8.gif" alt=":shy:" />',
+			'<img src="'.$base_url.'qx_upload/api/smiles/9.gif" alt=":secret:" />',
+			'<img src="'.$base_url.'qx_upload/api/smiles/10.gif" alt=":dance:" />',
+			'<img src="'.$base_url.'qx_upload/api/smiles/11.gif" alt=":rock:" />',
+			'<img src="'.$base_url.'qx_upload/api/smiles/12.gif" alt=":sos:" />',
+			'<img src="'.$base_url.'qx_upload/api/smiles/13.gif" alt=":girl:" />',
+			'<img src="'.$base_url.'qx_upload/api/smiles/14.gif" alt=":facepalm:" />',
 		);
 		$text = str_replace($smile_list, $smile_replace, $text);
 		$text = $this->BBquote($text);
