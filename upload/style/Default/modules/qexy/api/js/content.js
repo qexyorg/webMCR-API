@@ -41,8 +41,6 @@ $(function(){
 		return false;
 	});
 
-	$('.api-spl').hide();
-
 	$('body').on('click', '.api-spl-target', function(){
 
 		var id = $(this).attr('data-for');

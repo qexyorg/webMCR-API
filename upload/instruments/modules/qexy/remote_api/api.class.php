@@ -32,6 +32,8 @@ class api{
 			'site_ways' => $site_ways
 		);
 
+		define('BASE_URL', $config['s_root']);
+
 		// Set database driver
 		$base = (@$config['db_driver']=='mysqli') ? 'mysqli' : 'mysql';
 

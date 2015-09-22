@@ -38,7 +38,7 @@
 
 .api-bb-panel ul.dropdown-menu { min-width: 0px; }
 
-.api-spl { background-color: #ececec; border: 1px solid #ccc; border-radius: 4px; margin-top: 5px; margin-bottom: 5px; }
+.api-spl { display: none; background-color: #ececec; border: 1px solid #ccc; border-radius: 4px; margin-top: 5px; margin-bottom: 5px; }
 
 .api-spl > .api-spl-body {
 	margin: 5px 15px;
