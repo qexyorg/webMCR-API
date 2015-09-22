@@ -70,6 +70,24 @@ class api{
 	}
 
 	/**
+	 * bb_panel(@param $for) - Get BB panel
+	 *
+	 * @param $for - String
+	 *
+	 * @param $target - String
+	 *
+	 * @return String
+	 *
+	*/
+	public function bb_panel($for='.bb-textarea', $target='panel-target'){
+		ob_start();
+
+		include_once(API_STYLE.'bb-panel.html');
+
+		return ob_get_clean();
+	}
+
+	/**
 	 * BBquote(@param) - Recursive function for bb codes
 	 *
 	 * @param - String
