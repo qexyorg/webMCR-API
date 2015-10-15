@@ -15,10 +15,11 @@
 if(!defined('QEXY_API')){ exit('Hacking Attempt!'); }
 
 class api{
-	public $mcfg = array();
-	public $db = false;
-	public $user = false;
-	public $cfg = array();
+	public $mcfg	= array();
+	public $db		= false;
+	public $user	= false;
+	public $cfg		= array();
+	public $bb		= false;
 
 	public function __construct(){
 
@@ -56,6 +57,10 @@ class api{
 		}
 
 		$this->cfg = $cfg;
+
+		// Get "BB-Code-Parser"
+		require_once(API_DIR.'bbcode.parse.php');
+		$this->bb = new bbcode();
 	}
 
 	public function result($msg='', $type=false, $data=array()){
@@ -90,20 +95,6 @@ class api{
 	}
 
 	/**
-	 * BBquote(@param) - Recursive function for bb codes
-	 *
-	 * @param - String
-	 *
-	 * @return callback function
-	 *
-	*/
-	private function BBquote($text){
-		$reg = '#\[quote]((?:[^[]|\[(?!/?quote])|(?R))+)\[/quote]#isu';
-		if (is_array($text)){$text = '<blockquote>'.$text[1].'</blockquote>';}
-		return preg_replace_callback($reg, 'self::BBquote', $text);
-	}
-
-	/**
 	 * bb_decode(@param) - Change BB-code to HTML
 	 *
 	 * @param - String
@@ -112,72 +103,8 @@ class api{
 	 *
 	*/
 	public function bb_decode($text){
-		$text = nl2br($text);
-		$patern = array(
-			'/\[b\](.*)\[\/b\]/Usi',
-			'/\[i\](.*)\[\/i\]/Usi',
-			'/\[s\](.*)\[\/s\]/Usi',
-			'/\[u\](.*)\[\/u\]/Usi',
-			'/\[left\](.*)\[\/left\]/Usi',
-			'/\[center\](.*)\[\/center\]/Usi',
-			'/\[right\](.*)\[\/right\]/Usi',
-			'/\[code\](.*)\[\/code\]/Usi',
-		);
-		$replace = array(
-			'<b>$1</b>',
-			'<i>$1</i>',
-			'<s>$1</s>',
-			'<u>$1</u>',
-			'<p align="left">$1</p>',
-			'<p align="center">$1</p>',
-			'<p align="right">$1</p>',
-			'<code>$1</code>',
-		);
-		$text = preg_replace($patern, $replace, $text);
-		$text = preg_replace("/\[url=(?:&#039;|&quot;|\'|\")((((ht|f)tps?|mailto):(?:\/\/)?)(?:[^<\s\'\"]+))(?:&#039;|&quot;|\'|\")\](.*)\[\/url\]/Usi", "<a href=\"$1\">$5</a>", $text);
-		$text = preg_replace("/\[img\](((ht|f)tps?:(?:\/\/)?)(?:[^<\s\'\"]+))\[\/img\]/Usi", "<img src=\"$1\">", $text);
-		$text = preg_replace("/\[color=(?:&#039;|&quot;|\'|\")(\#[a-z0-9]{6})(?:&#039;|&quot;|\'|\")\](.*)\[\/color\]/Usi", "<font color=\"$1\">$2</font>", $text);
-		$text = preg_replace("/\[size=(?:&#039;|&quot;|\'|\")([1-6]{1})(?:&#039;|&quot;|\'|\")\](.*)\[\/size\]/Usi", "<font size=\"$1\">$2</font>", $text);
-		//<iframe width="560" height="315" src="https://www.youtube.com/embed/m8oMm_q1bpk" frameborder="0" allowfullscreen></iframe>
-		$text = preg_replace("/\[youtube\](http|https)\:\/\/www\.youtube.com\/watch\?v=([\w-]+)\[\/youtube\]/Usi", "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/$2\" frameborder=\"0\" allowfullscreen></iframe>", $text);
-		$smile_list = array(
-			'[:)]',
-			'[:(]',
-			'[;)]',
-			'[:bear:]',
-			'[:good:]',
-			'[:wall:]',
-			'[:D]',
-			'[:shy:]',
-			'[:secret:]',
-			'[:dance:]',
-			'[:rock:]',
-			'[:sos:]',
-			'[:girl:]',
-			'[:facepalm:]',
-		);
 
-		$base_url = $this->mcfg['config']['s_root'];
-
-		$smile_replace = array(
-			'<img src="'.$base_url.'qx_upload/api/smiles/1.gif" alt=":)" />',
-			'<img src="'.$base_url.'qx_upload/api/smiles/2.gif" alt=":(" />',
-			'<img src="'.$base_url.'qx_upload/api/smiles/3.gif" alt=";)" />',
-			'<img src="'.$base_url.'qx_upload/api/smiles/4.gif" alt=":bear:" />',
-			'<img src="'.$base_url.'qx_upload/api/smiles/5.gif" alt=":good:" />',
-			'<img src="'.$base_url.'qx_upload/api/smiles/6.gif" alt=":wall:" />',
-			'<img src="'.$base_url.'qx_upload/api/smiles/7.gif" alt=":D" />',
-			'<img src="'.$base_url.'qx_upload/api/smiles/8.gif" alt=":shy:" />',
-			'<img src="'.$base_url.'qx_upload/api/smiles/9.gif" alt=":secret:" />',
-			'<img src="'.$base_url.'qx_upload/api/smiles/10.gif" alt=":dance:" />',
-			'<img src="'.$base_url.'qx_upload/api/smiles/11.gif" alt=":rock:" />',
-			'<img src="'.$base_url.'qx_upload/api/smiles/12.gif" alt=":sos:" />',
-			'<img src="'.$base_url.'qx_upload/api/smiles/13.gif" alt=":girl:" />',
-			'<img src="'.$base_url.'qx_upload/api/smiles/14.gif" alt=":facepalm:" />',
-		);
-		$text = str_replace($smile_list, $smile_replace, $text);
-		$text = $this->BBquote($text);
-		return $text;
+		return $this->bb->parse($text);
 	}
 
 	/**
