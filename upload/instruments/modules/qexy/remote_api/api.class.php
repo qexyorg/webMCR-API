@@ -59,7 +59,7 @@ class api{
 		$this->cfg = $cfg;
 
 		// Get "BB-Code-Parser"
-		require_once(API_DIR.'bbcode.parse.php');
+		require_once(API_DIR_REMOTE.'bbcode.parse.php');
 		$this->bb = new bbcode();
 	}
 
