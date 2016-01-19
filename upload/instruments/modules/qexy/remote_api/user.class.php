@@ -48,11 +48,13 @@ class user{
 
 	public function __construct($api){
 
-		if(!isset($_COOKIE['PRTCookie1']) || empty($_COOKIE['PRTCookie1'])){ $this->set_unauth(); return false; }
-
 		$this->api = $api;
 		$this->db = $api->db;
 		$this->mcfg = $api->mcfg;
+
+		$auth_ar = $this->is_auth();
+
+		if($auth_ar===false){ $this->set_unauth(); return false; }
 
 		$bd_names = $this->mcfg['bd_names'];
 		$bd_users = $this->mcfg['bd_users'];
@@ -61,12 +63,20 @@ class user{
 		$is_iconomy_table = (is_bool($bd_names['iconomy'])) ? "" : "LEFT JOIN `{$bd_names['iconomy']}` AS `i` ON `i`.`{$bd_money['login']}`=`u`.`{$bd_users['login']}`";
 		$is_iconomy_rows = (is_bool($bd_names['iconomy'])) ? "" : ", `i`.`{$bd_money['money']}`";
 
-		$tmp = $this->db->safesql($_COOKIE['PRTCookie1']);
+		$value = $this->db->safesql($auth_ar[0]);
+
+		if($auth_ar[1]=='tmp'){
+			$where = "`u`.`{$bd_users['tmp']}`='$value'";
+		}elseif($auth_ar[1]=='id'){
+			$where = "`u`.`{$bd_users['id']}`='$value'";
+		}else{
+			$where = "`u`.`{$bd_users['login']}`='$value'";
+		}
 
 		$query = $this->db->query("SELECT `u`.`{$bd_users['id']}`, `u`.`{$bd_users['login']}`, `u`.`{$bd_users['password']}`,
 											`u`.`{$bd_users['ip']}`, `u`.`{$bd_users['email']}`, `u`.`{$bd_users['female']}`,
-											`u`.`{$bd_users['group']}`, `u`.`{$bd_users['ctime']}`, `u`.comments_num,
-											`u`.gameplay_last, `u`.active_last, `u`.default_skin,
+											`u`.`{$bd_users['group']}`, `u`.`{$bd_users['ctime']}`, `u`.`{$bd_users['tmp']}`,
+											`u`.comments_num, `u`.gameplay_last, `u`.active_last, `u`.default_skin,
 											`g`.`name` AS `group_name`, `g`.`lvl`, `g`.`system`, `g`.`lvl`, `g`.`change_skin`, `g`.`change_pass`,
 											`g`.`change_login`, `g`.`change_cloak`, `g`.`add_news`, `g`.`add_comm`,
 											`g`.`adm_comm`, `g`.`max_fsize`, `g`.`max_ratio`$is_iconomy_rows
@@ -74,7 +84,7 @@ class user{
 									LEFT JOIN `{$bd_names['groups']}` AS `g`
 										ON `g`.id=`u`.`{$bd_users['group']}`
 									$is_iconomy_table
-									WHERE `u`.`{$bd_users['tmp']}`='$tmp'");
+									WHERE $where");
 
 		if(!$query || $this->db->num_rows($query)<=0){ $this->set_unauth(); return false; }
 
@@ -85,7 +95,7 @@ class user{
 		$this->female			= intval($ar[$bd_users['female']]);
 		$this->email			= $this->db->HSC($ar[$bd_users['email']]);
 		$this->password			= $this->db->HSC($ar[$bd_users['password']]);
-		$this->tmp				= $tmp;
+		$this->tmp				= $ar[$bd_users['tmp']];
 		$this->comments			= intval($ar['comments_num']);
 		$this->gameplay_last	= strtotime($ar['gameplay_last']);
 		$this->create_time		= strtotime($ar[$bd_users['ctime']]);
@@ -116,8 +126,24 @@ class user{
 		$this->is_auth			= true;
 	}
 
+	private function is_auth(){
+		if(isset($_SESSION['user_id'])){
+			return array($_SESSION['user_id'], 'id');
+
+		}elseif(isset($_SESSION['user_name'])){
+			return array($_SESSION['user_name'], 'name');
+
+		}elseif(isset($_COOKIE['PRTCookie1'])){
+			return array($_COOKIE['PRTCookie1'], 'tmp');
+
+		}else{
+			return false;
+		}
+	}
+
 	private function set_unauth(){
 		setcookie("PRTCookie1", "", time()-3600, '/');
+		if(isset($_SESSION['user_id'])){ unset($_SESSION['user_id']); }
 		if(isset($_SESSION['user_name'])){ unset($_SESSION['user_name']); }
 		if(isset($_SESSION['ip'])){ unset($_SESSION['ip']); }
 		return true;
